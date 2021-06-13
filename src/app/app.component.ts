@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {interval, Subscription} from "rxjs";
-import {TimeModel} from "./time.model";
+import {TimeModel} from "./models/time.model";
+import {DefaultTime} from "./models/default.time";
+
 
 @Component({
   selector: 'app-root',
@@ -8,10 +10,7 @@ import {TimeModel} from "./time.model";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  time: TimeModel = {
-    seconds: 59,
-    minutes: 0
-  };
+  time: TimeModel = DefaultTime.getDefault();
   subscription?: Subscription;
   isPaused: boolean = true;
 
@@ -40,9 +39,6 @@ export class AppComponent implements OnInit {
   }
 
   resetTime() {
-    this.time = {
-      seconds: 59,
-      minutes: 0
-    };
+    this.time = DefaultTime.getDefault();
   }
 }
