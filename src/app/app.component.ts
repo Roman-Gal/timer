@@ -39,5 +39,10 @@ export class AppComponent implements OnInit {
     this.isPaused = !this.isPaused;
   }
 
-
+  resetTime() {
+    this.time = {
+      seconds: 59,
+      minutes: 0
+    };
+  }
 }

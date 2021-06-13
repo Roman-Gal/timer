@@ -5,3 +5,6 @@
   <button type="button" (click)="togglePause()" *ngIf="isPaused">Start</button>
   <button type="button" (click)="togglePause()" *ngIf="!isPaused">Pause</button>
 </div>
+<div>
+  <button type="button" (click)="resetTime()" [disabled]="!isPaused">Reset</button>
+</div>
