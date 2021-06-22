@@ -19,20 +19,21 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.subscription = interval(1000).subscribe(() => {
-      this.timeCounterService.countDown(this.time, this.isPaused);
-      if (this.time.minutes === 0 && this.time.seconds === 0) {
-        this.subscription?.unsubscribe();
-        this.isPaused = true;
-        //Todo: fix behavior after and of time
-      }
-    })
   }
-
-
 
   togglePause() {
     this.isPaused = !this.isPaused;
+    if (!this.isPaused) {
+      this.subscription = interval(1000).subscribe(() => {
+        this.timeCounterService.countDown(this.time, this.isPaused);
+        if (this.time.minutes === 0 && this.time.seconds === 0) {
+          this.subscription?.unsubscribe();
+          this.isPaused = true;
+        }
+      })
+    } else {
+      this.subscription?.unsubscribe();
+    }
   }
 
   resetTime() {
